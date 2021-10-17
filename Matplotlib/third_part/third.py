@@ -1,24 +1,13 @@
-import csv
 import math
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-data = []
-preps = set()
-groups = set()
 preps_mean = []
 groups_mean = []
 colour_map = {str(i): ("C" + str(i)) for i in range(11)}
 
-with open("students.csv") as file:
-    reader = csv.reader(file, delimiter=';')
-    for i in reader:
-        data.append([i[0], i[1], int(i[2])])
-        preps.add(i[0])
-        groups.add(i[1])
-
-df = pd.DataFrame(data, columns=['prep', 'group', 'mark'])
+df = pd.read_csv("students.csv", names=['prep', 'group', 'mark'], sep=";")
 preps = df[['prep', 'mark']]
 groups = df[['group', 'mark']]
 del df
@@ -28,7 +17,6 @@ preps_names = preps['prep'].unique()
 columns = 3
 strings = math.ceil(len(preps_names) / columns)
 fig, axes = plt.subplots(ncols=columns, nrows=strings, gridspec_kw={"wspace": 0.2, "hspace": 0.3})
-
 
 for i, p in enumerate(preps_names):
     a1, a2 = i // columns, i % columns
@@ -52,7 +40,7 @@ fig.suptitle(f'The most strict teacher is {pm[0]}, the least strict one is {pM[0
 
 plt.savefig("preps.png", bbox_inches='tight')
 
-del fig, axes
+del fig, axes, columns, strings
 
 # groups chart
 groups_names = groups['group'].unique()
