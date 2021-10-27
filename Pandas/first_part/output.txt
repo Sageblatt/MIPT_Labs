@@ -1,0 +1,18 @@
+TOP THREE PAYMENTS:
+N                  5085
+CONTRACTOR    Acme, Inc
+STATUS               OK
+SUM              100500
+
+N                      4451
+CONTRACTOR    Umbrella, Inc
+STATUS                   OK
+SUM                    1000
+
+N                   336
+CONTRACTOR    Acme, Inc
+STATUS               OK
+SUM                 999
+
+--------------------------------
+UMBRELLA, INC INCOME: 925719
