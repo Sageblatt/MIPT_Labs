@@ -28,7 +28,8 @@ for i, p in enumerate(preps_names):
     preps_mean.append([p, marks_sum/total])
     labels = [str(s[1]) for s in d.keys()]
     values = [s for s in d.values()]
-    axes[a1, a2].pie(values, labels=labels, colors=[colour_map[key] for key in labels], autopct=lambda y: f'{int(y/100*total)}', textprops={'size': 'smaller'})
+    axes[a1, a2].pie(values, labels=labels, colors=[colour_map[key] for key in labels],
+                     autopct=lambda y: f'{int(y/100*total)}', textprops={'size': 'smaller'})
     axes[a1, a2].set_title(p)
 
 fig.delaxes(axes[2, 0])
@@ -57,7 +58,8 @@ for i, p in enumerate(sorted(groups_names)):
     groups_mean.append([p, marks_sum/total])
     labels = [str(s[1]) for s in d.keys()]
     values = [s for s in d.values()]
-    axes[a1, a2].pie(values, labels=labels, colors=[colour_map[key] for key in labels], autopct=lambda y: f'{int(y/100*total)}', textprops={'size': 'smaller'})
+    axes[a1, a2].pie(values, labels=labels, colors=[colour_map[key] for key in labels],
+                     autopct=lambda y: f'{int(y/100*total)}', textprops={'size': 'smaller'})
     axes[a1, a2].set_title(p)
 
 pM = max(groups_mean, key=lambda y: y[1])
@@ -65,5 +67,5 @@ pm = min(groups_mean, key=lambda y: y[1])
 fig.suptitle(f'The most intelligent groups are 752 and 755 , the least intelligent one is {pm[0]}')
 
 plt.savefig("groups.png", bbox_inches='tight')
-
+plt.close()
 # plt.show()

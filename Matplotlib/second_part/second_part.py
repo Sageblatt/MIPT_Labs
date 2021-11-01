@@ -28,3 +28,4 @@ for i in range(frames_amount):
 # plt.show()
 plt.savefig("signal.png", bbox_inches='tight')
 plt.close()
+file.close()
