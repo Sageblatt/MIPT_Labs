@@ -1,29 +1,15 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("flights.csv")
 
-names = np.sort(df['CARGO'].unique())
-
 fig, axes = plt.subplots(ncols=3, nrows=1, gridspec_kw={"wspace": 0.8}, figsize=[11, 8])
 
-data = [[], [], []]
+names = ['Flights amount', "Total price", "Total weight"]
 
-data[0] = df.groupby('CARGO').count()['Unnamed: 0'].to_list()
-data[1] = df.groupby('CARGO').sum()['PRICE'].to_list()
-data[2] = df.groupby('CARGO').sum()['WEIGHT'].to_list()
-
-del df
-
-for i in range(3):
-    axes[i].bar([0, 1, 2], height=[data[i][k] for k in range(3)])
-    axes[i].set_xticks([0, 1, 2])
-    axes[i].set_xticklabels((p for p in names))
-
-axes[0].set_title("Flights amount")
-axes[1].set_title("Total price")
-axes[2].set_title("Total weight")
+df.groupby('CARGO').count()['Unnamed: 0'].plot(kind='bar', ax=axes[0], title=names[0], xlabel='')
+df.groupby('CARGO').sum()['PRICE'].plot(kind='bar', ax=axes[1], title=names[1], xlabel='')
+df.groupby('CARGO').sum()['WEIGHT'].plot(kind='bar', ax=axes[2], title=names[2], xlabel='')
 
 plt.savefig("output.png")
 # plt.show()
